@@ -10,13 +10,32 @@ class Conexion{
   //Métodos
 
   public function __construct(){
-    $this->conexion = new PDO("mysql:host=localhost;dbname=trabajo_curso;","root","");
+    $this->conexion = new PDO("mysql:host=localhost;dbname=LOGIN;","root","");
     $this->conexion->query("SET NAMES 'utf8'");
   }
 
 
-  public function createProducto(){
-    $sql = "INSERT INTO producto VALUES(:nombre,:precio,:cantidad);";
+  public function createProduct($nombre,$precio,$cantidad){
+    $sql = "INSERT INTO productos VALUES(null, :nombre, :precio, :cantidad);";
+    $stmt = $this->conexion->prepare($sql);
+    $stmt->bindParam(":nombre",$nombre);
+    $stmt->bindParam(":precio",$precio);
+    $stmt->bindParam(":cantidad",$cantidad);
+    if($stmt->execute()){
+      return true;
+    }else{
+      return false;
+    }
+  }
+
+
+  public function getProducts(){
+    $stmt = $this->conexion->prepare("CALL getProducts");
+    $stmt->execute();
+    while($datos =  $stmt->fetch(PDO::FETCH_ASSOC)){
+      $this->datos[] =  $datos;
+    }
+    return $this->datos;
   }
 
 
@@ -39,8 +58,8 @@ class Conexion{
       $stmt = $this->conexion->prepare("CALL getUser(:email);");
       $stmt->bindParam(":email",$email);
       $stmt->execute();
-      $datos =  $stmt->fetch(PDO::FETCH_ASSOC);
-      return $datos;
+      $this->$datos = $stmt->fetch(PDO::FETCH_ASSOC);
+      return $this->$datos;
   }
 
 

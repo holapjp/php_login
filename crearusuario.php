@@ -10,7 +10,7 @@
     $pass = password_hash($pass, PASSWORD_BCRYPT);
     $telefono = $_POST['telefono'];
 
-  if($crear->createUser($nombre, $apellido, $telefono, $email,$pass)){
+  if($crear->createUser($nombre, $apellido, $email, $pass, $telefono)){
     header("Location: singup.php?exito=1");
   }else{
     header("Location: singup.php?error=1");

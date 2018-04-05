@@ -1,7 +1,15 @@
+<?php
+  session_start();
+
+  if(!empty($_SESSION['id_user'])){
+    header("Location: /crud");
+  }
+?>
 <!DOCTYPE html>
 <html>
   <head>
     <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link rel="stylesheet" href="assets/css/bootstrap.min.css">
     <script src="assets/js/fontawesome-all.min.js" charset="utf-8"></script>
     <title>SingUp</title>

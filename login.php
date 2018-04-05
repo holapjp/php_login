@@ -1,7 +1,17 @@
+<?php
+  session_start();
+
+  if(!empty($_SESSION['id_user'])){
+    header("Location: /crud");
+  }
+
+ ?>
+
 <!DOCTYPE html>
 <html>
   <head>
     <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link rel="stylesheet" href="assets/css/bootstrap.min.css">
     <script src="assets/js/fontawesome-all.min.js" charset="utf-8"></script>
     <title>Login</title>
@@ -33,7 +43,7 @@
               <input type="email" name="usuario" required class="form-control" placeholder="Enter your email">
             </div>
             <div class="form-group">
-              <label for="password"> <b>Password</b> </label>
+              <label for="password1"> <b>Password</b> </label>
               <input type="password" name="password1" required class="form-control" placeholder="Enter your password">
             </div>
           </div>
