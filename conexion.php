@@ -10,7 +10,7 @@ class Conexion{
   //Métodos
 
   public function __construct(){
-    $this->conexion = new PDO("mysql:host=localhost;dbname=LOGIN;","root","");
+    $this->conexion = new PDO("mysql:host=localhost;dbname=login;","root","");
     $this->conexion->query("SET NAMES 'utf8'");
   }
 
@@ -28,12 +28,26 @@ class Conexion{
     }
   }
 
+  public function uptadeProduct(){
+
+  }
+
 
   public function getProducts(){
-    $stmt = $this->conexion->prepare("CALL getProducts");
+    $stmt = $this->conexion->prepare("CALL getProducts();");
     $stmt->execute();
     while($datos =  $stmt->fetch(PDO::FETCH_ASSOC)){
       $this->datos[] =  $datos;
+    }
+    return $this->datos;
+  }
+
+  public function getProductsById($id){
+    $stmt = $this->conexion->prepare("Call getProductsById(:id);");
+    $stmt->bindParam(":id",$id);
+    $stmt->execute();
+    if($datos = $stmt->fetch(PDO::FETCH_ASSOC)){
+      $this->datos[] = $datos;
     }
     return $this->datos;
   }

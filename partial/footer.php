@@ -2,20 +2,18 @@
   html{
     height:100%;
   }
+
   body{
-    display :flex;
-    flex-direction:column;
-    height: 100%
-  }
-  header{
-    flex:0 0 auto:
+    margin:0px;
+    padding:0px;
+    height:auto;
   }
 
 
   footer{
-    text-align: center;
-    position:absolute;
+    float:inherit;
     bottom:0;
+    text-align: center;
     width: 100%;
     height:30px;
   }
@@ -37,8 +35,11 @@
     text-decoration: none;
   }
 
+  .main-container{
+    height:auto;
+  }
   .footer{
-    padding:10px;
+    padding:20px;
     border:0;
     margin:0;
     background:#5dade2;
